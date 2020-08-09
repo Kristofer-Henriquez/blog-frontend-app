@@ -7,6 +7,7 @@ import Login from '../views/Login.vue'
 import Logout from '../views/Logout.vue'
 import PostIndex from '../views/PostIndex.vue'
 import PostsNew from '../views/PostsNew.vue'
+import PostsShow from '../views/PostsShow.vue'
 
 Vue.use(VueRouter)
 
@@ -25,6 +26,11 @@ Vue.use(VueRouter)
     path: '/posts/new',
     name: 'PostsNew',
     component: PostsNew
+  },
+  {
+    path: '/posts/:id',
+    name: 'PostsShow',
+    component: PostsShow
   },
   {
     path: '/test',

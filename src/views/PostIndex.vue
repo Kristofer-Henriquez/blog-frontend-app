@@ -3,7 +3,7 @@
     <h1>{{ message }}</h1>
     <h2> See below posts! </h2>
     <div v-for="post in posts">
-      {{post.title}}
+      <h3><a v-bind:href="`/posts/${post.id}`">{{ post.title }}</a></h3>
       {{post.image}}
       <hr>
       <br>
