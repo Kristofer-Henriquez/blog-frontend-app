@@ -6,6 +6,9 @@
     <p> {{post.body}} </p>
 
     <img v-bind:src="post.image">
+    <br>
+    <a v-bind:href="`/posts/${post.id}/edit`"> Edit this post! </a>
+
   </div>
 </template>
 
