@@ -1,5 +1,6 @@
 <template>
   <div class="posts-new">
+    <img v-if="status" v-bind:src="`https://http.cat/${status}`">
     <form v-on:submit.prevent="submit()">
       <h1>Create Post</h1>
       <ul>
@@ -12,6 +13,8 @@
       <div class="form-group">
         <label>Body:</label>
         <input type="text" class="form-control" v-model="body">
+        <small class="text-danger" v-if="body.length > 120"> Max limit of 120 characters </small>
+        <small v-if="body.length > 80"> {{ body.red }} </small>
       </div>
       <div class="form-group">
         <label>Image:</label>
@@ -31,7 +34,8 @@ export default {
       title: "",
       body: "",
       image: "",
-      errors: []
+      errors: [],
+      status: ""
     };
   },
   methods: {
@@ -48,6 +52,8 @@ export default {
         })
         .catch(error => {
           this.errors = error.response.data.errors;
+          console.log(error.response);
+          this.status = error.response.status;
         });
     }
   }
