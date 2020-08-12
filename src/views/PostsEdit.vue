@@ -52,7 +52,7 @@ export default {
       console.log("individual post");
 
       axios.get("/api/posts/" + this.$route.params.id).then(response => {
-        console.log(response);
+        console.log(response.data);
         this.post = response.data;
       });
     }
