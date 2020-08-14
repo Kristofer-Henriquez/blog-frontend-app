@@ -60,3 +60,22 @@
 }
 
 </style>
+
+
+<script>
+export default {
+  methods: {
+    loggedIn: function() {
+      if (localStorage.getItem("jwt")) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    getUserId: function () {
+      return localStorage.getItem("user_id");
+    }
+
+  }
+}
+</script>
