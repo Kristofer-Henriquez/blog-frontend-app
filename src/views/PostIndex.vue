@@ -2,7 +2,14 @@
   <div class="home">
     <h1>{{ message }}</h1>
     <h2> See below posts! </h2>
-    <div v-for="post in posts">
+
+    <input type="text" v-model="searchentry" list="titles">
+
+    <datalist id="titles">
+      <option v-for="post in orderBy(posts, 'title')"> {{ post.title}} </option> 
+    </datalist>
+
+    <div v-for="post in filterBy(posts, searchentry, 'title')">
       <h3><a v-bind:href="`/posts/${post.id}`">{{ post.title }}</a></h3>
       {{post.image}}
       <hr>
@@ -18,12 +25,14 @@
 
 <script>
 import axios from "axios";
+import Vue2Filters from "vue2-filters";
 
 export default {
   data: function() {
     return {
       message: "Welcome to Vue.js!",
-      posts: []
+      posts: [],
+      searchentry: ""
     };
   },
   created: function() {
@@ -37,6 +46,7 @@ export default {
         this.posts = response.data;
       });
     }
-  }
+  },
+  mixins: [Vue2Filters.mixin],
 };
 </script>
